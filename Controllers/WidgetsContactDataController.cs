@@ -10,14 +10,14 @@ namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
     public class WidgetsContactDataController : BasePublicController
     {
         private readonly ISettingService _settingService;
-        private readonly ContactDataSettings _ContactDataSettings;
+        private readonly ContactDataSettings _contactDataSettings;
         private readonly IContactDataService _widgetContactDataService;
 
         public WidgetsContactDataController(ISettingService settingService,
-            ContactDataSettings ContactDataSettings, IContactDataService widgetContactDataService)
+            ContactDataSettings contactDataSettings, IContactDataService widgetContactDataService)
         {
             this._settingService = settingService;
-            this._ContactDataSettings = ContactDataSettings;
+            this._contactDataSettings = contactDataSettings;
             this._widgetContactDataService = widgetContactDataService;
         }
 
@@ -27,7 +27,17 @@ namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
         {
             var model = new ConfigurationModel()
             {
-                WidgetZone = _ContactDataSettings.WidgetZone
+                WidgetZone = _contactDataSettings.WidgetZone,
+                ViewMode = _contactDataSettings.ViewMode,
+                CompanyName = _contactDataSettings.CompanyName,
+                NationalRegisterCorporate = _contactDataSettings.NationalRegisterCorporate,
+                Address = _contactDataSettings.Address,
+                PostalCode = _contactDataSettings.PostalCode,
+                City = _contactDataSettings.City,
+                State = _contactDataSettings.State,
+                District = _contactDataSettings.District,
+                PhoneNumber = _contactDataSettings.PhoneNumber,
+                Email = _contactDataSettings.Email
             };
             return View("~/Plugins/Widgets.ContactData/Views/WidgetsContactData/Configure.cshtml", model);
         }
@@ -41,8 +51,19 @@ namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
             {
                 return Configure();
             }
-            _ContactDataSettings.WidgetZone = model.WidgetZone;
-            _settingService.SaveSetting(_ContactDataSettings);
+            _contactDataSettings.WidgetZone = model.WidgetZone;
+            _contactDataSettings.ViewMode = model.ViewMode;
+            _contactDataSettings.CompanyName = model.CompanyName;
+            _contactDataSettings.NationalRegisterCorporate = model.NationalRegisterCorporate;
+            _contactDataSettings.Address = model.Address;
+            _contactDataSettings.PostalCode = model.PostalCode;
+            _contactDataSettings.City = model.City;
+            _contactDataSettings.State = model.State;
+            _contactDataSettings.District = model.District;
+            _contactDataSettings.PhoneNumber = model.PhoneNumber;
+            _contactDataSettings.Email = model.Email;
+
+            _settingService.SaveSetting(_contactDataSettings);
             return Configure();
         }
 
