@@ -51,7 +51,7 @@ namespace NopBrasil.Plugin.Widgets.ContactData
         {
             var settings = new ContactDataSettings
             {
-                WidgetZone = "home_page_bottom"
+                WidgetZone = "footer"
             };
             _settingService.SaveSetting(settings);
 
