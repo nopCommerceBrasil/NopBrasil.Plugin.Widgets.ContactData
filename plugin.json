@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Contact Data",
+  "SystemName": "Widgets.ContactData",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.00" ],
+  "Author": "nopCommerce Brasil - www.nopcommercebrasil.com - nopcommercebrasil@nopcommercebrasil.com",
+  "DisplayOrder": 1,
+  "FileName": "NopBrasil.Plugin.Widgets.ContactData.dll",
+  "Description": "This plugin show the store's contact data in a widget zone"
+}
