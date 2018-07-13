@@ -1,12 +1,9 @@
-﻿@{
-    Layout = "";
-}
-@model NopBrasil.Plugin.Widgets.ContactData.Models.ConfigurationModel
-@using Nop.Web.Framework;
+﻿@model NopBrasil.Plugin.Widgets.ContactData.Models.ConfigurationModel
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+@{
+    Layout = "_ConfigurePlugin";
+}
+<form asp-controller="WidgetsContactData" asp-action="Configure" method="post">
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -19,124 +16,121 @@
                         Este plugin é open-source e seu código-fonte está disponível no <a href="https://github.com/nopCommerceBrasil">GitHub do NopCommerce Brasil</a> no repositório <a href="https://github.com/nopCommerceBrasil/NopBrasil.Plugin.Widgets.ContactData">NopBrasil.Plugin.Widgets.ContactData</a>
                     </p>
                     <br />
-                    
+
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.WidgetZone)
+                        <nop-label asp-for="WidgetZone" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.WidgetZone)
-                        @Html.ValidationMessageFor(model => model.WidgetZone)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.ViewMode)
-                    </div>
-                    <div class="col-md-9">
-                        @Html.DropDownListFor(model => model.ViewMode, Model.ViewModeAvailable)
-                        @Html.ValidationMessageFor(model => model.ViewMode)
+                        <nop-editor asp-for="WidgetZone" />
+                        <span asp-validation-for="WidgetZone"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.CompanyName)
+                        <nop-label asp-for="ViewMode" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.CompanyName)
-                        @Html.ValidationMessageFor(model => model.CompanyName)
+                        <nop-select asp-for="ViewMode" asp-items="Model.ViewModeAvailable" />
+                        <span asp-validation-for="ViewMode"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.NationalRegisterCorporate)
+                        <nop-label asp-for="CompanyName" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.NationalRegisterCorporate)
-                        @Html.ValidationMessageFor(model => model.NationalRegisterCorporate)
+                        <nop-editor asp-for="CompanyName" />
+                        <span asp-validation-for="CompanyName"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.Address)
+                        <nop-label asp-for="NationalRegisterCorporate" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Address)
-                        @Html.ValidationMessageFor(model => model.Address)
+                        <nop-editor asp-for="NationalRegisterCorporate" />
+                        <span asp-validation-for="NationalRegisterCorporate"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.PostalCode)
+                        <nop-label asp-for="Address" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.PostalCode)
-                        @Html.ValidationMessageFor(model => model.PostalCode)
+                        <nop-editor asp-for="Address" />
+                        <span asp-validation-for="Address"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.City)
+                        <nop-label asp-for="PostalCode" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.City)
-                        @Html.ValidationMessageFor(model => model.City)
+                        <nop-editor asp-for="PostalCode" />
+                        <span asp-validation-for="PostalCode"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.State)
+                        <nop-label asp-for="City" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.State)
-                        @Html.ValidationMessageFor(model => model.State)
+                        <nop-editor asp-for="City" />
+                        <span asp-validation-for="City"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.District)
+                        <nop-label asp-for="State" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.District)
-                        @Html.ValidationMessageFor(model => model.District)
+                        <nop-editor asp-for="State" />
+                        <span asp-validation-for="State"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.PhoneNumber)
+                        <nop-label asp-for="District" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.PhoneNumber)
-                        @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        <nop-editor asp-for="District" />
+                        <span asp-validation-for="District"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.Email)
+                        <nop-label asp-for="PhoneNumber" />
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Email)
-                        @Html.ValidationMessageFor(model => model.Email)
+                        <nop-editor asp-for="PhoneNumber" />
+                        <span asp-validation-for="PhoneNumber"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        &nbsp;
+                        <nop-label asp-for="Email" />
                     </div>
                     <div class="col-md-9">
+                        <nop-editor asp-for="Email" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
                         <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
                     </div>
                 </div>
@@ -144,4 +138,4 @@
             </div>
         </div>
     </div>
-}
+</form>

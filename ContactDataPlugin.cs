@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Web.Routing;
+using Nop.Core;
 using Nop.Core.Plugins;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
@@ -8,44 +8,25 @@ using Nop.Services.Media;
 
 namespace NopBrasil.Plugin.Widgets.ContactData
 {
-    /// <summary>
-    /// PLugin
-    /// </summary>
     public class ContactDataPlugin : BasePlugin, IWidgetPlugin
     {
         private readonly ISettingService _settingService;
         private readonly ContactDataSettings _ContactDataSettings;
+        private readonly IWebHelper _webHelper;
 
-        public ContactDataPlugin(IPictureService pictureService,
-            ISettingService settingService, ContactDataSettings ContactDataSettings)
+        public ContactDataPlugin(IPictureService pictureService, ISettingService settingService,
+            ContactDataSettings ContactDataSettings, IWebHelper webHelper)
         {
             this._settingService = settingService;
             this._ContactDataSettings = ContactDataSettings;
+            this._webHelper = webHelper;
         }
 
-        public IList<string> GetWidgetZones()
-        {
-            return new List<string> { _ContactDataSettings.WidgetZone };
-        }
+        public IList<string> GetWidgetZones() => new List<string> { _ContactDataSettings.WidgetZone };
 
-        public void GetConfigurationRoute(out string actionName, out string controllerName, out RouteValueDictionary routeValues)
-        {
-            actionName = "Configure";
-            controllerName = "WidgetsContactData";
-            routeValues = new RouteValueDictionary { { "Namespaces", "NopBrasil.Plugin.Widgets.ContactData.Controllers" }, { "area", null } };
-        }
+        public override string GetConfigurationPageUrl() => _webHelper.GetStoreLocation() + "Admin/WidgetsContactData/Configure";
 
-        public void GetDisplayWidgetRoute(string widgetZone, out string actionName, out string controllerName, out RouteValueDictionary routeValues)
-        {
-            actionName = "PublicInfo";
-            controllerName = "WidgetsContactData";
-            routeValues = new RouteValueDictionary
-            {
-                {"Namespaces", "NopBrasil.Plugin.Widgets.ContactData.Controllers"},
-                {"area", null},
-                {"widgetZone", widgetZone}
-            };
-        }
+        public void GetPublicViewComponent(string widgetZone, out string viewComponentName) => viewComponentName = "WidgetsContactData";
 
         public override void Install()
         {

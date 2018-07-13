@@ -1,28 +1,30 @@
-﻿using System.Web.Mvc;
-using NopBrasil.Plugin.Widgets.ContactData.Models;
+﻿using NopBrasil.Plugin.Widgets.ContactData.Models;
 using Nop.Services.Configuration;
 using Nop.Web.Framework.Controllers;
-using Nop.Web.Controllers;
 using NopBrasil.Plugin.Widgets.ContactData.Service;
+using Nop.Web.Framework;
+using Microsoft.AspNetCore.Mvc;
+using Nop.Services.Localization;
 
 namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
 {
-    public class WidgetsContactDataController : BasePublicController
+    [Area(AreaNames.Admin)]
+    public class WidgetsContactDataController : BasePluginController
     {
         private readonly ISettingService _settingService;
         private readonly ContactDataSettings _contactDataSettings;
         private readonly IContactDataService _widgetContactDataService;
+        private readonly ILocalizationService _localizationService;
 
-        public WidgetsContactDataController(ISettingService settingService,
-            ContactDataSettings contactDataSettings, IContactDataService widgetContactDataService)
+        public WidgetsContactDataController(ISettingService settingService, ContactDataSettings contactDataSettings, 
+            IContactDataService widgetContactDataService, ILocalizationService localizationService)
         {
             this._settingService = settingService;
             this._contactDataSettings = contactDataSettings;
             this._widgetContactDataService = widgetContactDataService;
+            this._localizationService = localizationService;
         }
 
-        [AdminAuthorize]
-        [ChildActionOnly]
         public ActionResult Configure()
         {
             var model = new ConfigurationModel()
@@ -39,12 +41,10 @@ namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
                 PhoneNumber = _contactDataSettings.PhoneNumber,
                 Email = _contactDataSettings.Email
             };
-            return View("~/Plugins/Widgets.ContactData/Views/WidgetsContactData/Configure.cshtml", model);
+            return View("~/Plugins/Widgets.ContactData/Views/Configure.cshtml", model);
         }
 
         [HttpPost]
-        [AdminAuthorize]
-        [ChildActionOnly]
         public ActionResult Configure(ConfigurationModel model)
         {
             if (!ModelState.IsValid)
@@ -64,13 +64,9 @@ namespace NopBrasil.Plugin.Widgets.ContactData.Controllers
             _contactDataSettings.Email = model.Email;
 
             _settingService.SaveSetting(_contactDataSettings);
-            return Configure();
-        }
 
-        [ChildActionOnly]
-        public ActionResult PublicInfo(string widgetZone, object additionalData = null)
-        {
-             return View("~/Plugins/Widgets.ContactData/Views/WidgetsContactData/PublicInfo.cshtml", _widgetContactDataService.GetModel());
+            SuccessNotification(_localizationService.GetResource("Admin.Plugins.Saved"));
+            return Configure();
         }
     }
 }

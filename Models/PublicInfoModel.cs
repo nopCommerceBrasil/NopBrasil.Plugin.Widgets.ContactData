@@ -1,14 +1,9 @@
-﻿using Nop.Web.Framework.Mvc;
+﻿using Nop.Web.Framework.Mvc.Models;
 
 namespace NopBrasil.Plugin.Widgets.ContactData.Models
 {
     public class PublicInfoModel : BaseNopModel
     {
-        public PublicInfoModel()
-        {
-            
-        }
-
-        public string Html { get; set; }
+         public string Html { get; set; }
     }
 }
