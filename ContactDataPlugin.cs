@@ -14,7 +14,7 @@ namespace NopBrasil.Plugin.Widgets.ContactData
         private readonly ContactDataSettings _ContactDataSettings;
         private readonly IWebHelper _webHelper;
 
-        public ContactDataPlugin(IPictureService pictureService, ISettingService settingService,
+        public ContactDataPlugin(ISettingService settingService,
             ContactDataSettings ContactDataSettings, IWebHelper webHelper)
         {
             this._settingService = settingService;

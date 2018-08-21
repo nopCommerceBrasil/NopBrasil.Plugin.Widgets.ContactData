@@ -54,5 +54,6 @@
  </ItemGroup>
  <ItemGroup>
    <ProjectReference Include="..\nopCommerce400\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
+   <ProjectReference Include="..\nopCommerce400\Presentation\Nop.Web\Nop.Web.csproj" />
  </ItemGroup>
 </Project>
