@@ -1,7 +1,7 @@
-﻿using Nop.Web.Framework.Mvc.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Web.Framework.Models;
 
 namespace NopBrasil.Plugin.Widgets.ContactData.Models
 {
