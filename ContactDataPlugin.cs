@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Nop.Core;
-using Nop.Core.Plugins;
+using Nop.Services.Plugins;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -114,5 +114,7 @@ namespace NopBrasil.Plugin.Widgets.ContactData
         }
 
         public string GetWidgetViewComponentName(string widgetZone) => "WidgetsContactData";
+
+        public bool HideInWidgetList => false;
     }
 }
